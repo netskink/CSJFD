@@ -2,6 +2,7 @@
 # see https://cran.r-project.org/web/packages/httr/vignettes/quickstart.html
 #
 # install.packages("httr")
+# remove.packages("httr")
 library(httr)
 
 hello <- function() {
