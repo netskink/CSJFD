@@ -1,4 +1,2 @@
 exportPattern("^[[:alpha:]]+")
-# from check of package build
-importFrom("stats", "rnorm")
-import("hashmap")
+import(httr)

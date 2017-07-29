@@ -32,11 +32,11 @@ test_that("getData cache refresh capability function", {
 
 test_that("getData customheader capability", {
   # The first url will return the custom header
-  response = getData("http://httpbin.org/get",TRUE)
-  expect_match(content(response)$headers$Customheader,"CS")
+  r1 = getData("http://httpbin.org/get")
+  expect_match(content(r1)$headers$Customheader,"CS")
 
   # The second url will not return the custom header
-  response = getData("http://echo.jsontest.com/fieldkey/fieldvalue/purpose/test")
-  expect_null(content(response)$headers$Customheader,TRUE)
+  r2 = getData("http://echo.jsontest.com/fieldkey/fieldvalue/purpose/test")
+  expect_null(content(r2)$headers)
 
 })

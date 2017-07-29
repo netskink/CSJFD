@@ -15,6 +15,7 @@ library(httr)
   set.seed(123)
 
 
+  # the hashmap package did not work for lists
   # instead use the env capability
   EE = new.env(hash=TRUE)
   assign("CSJFD.EE", EE, envir=.GlobalEnv)
@@ -35,7 +36,7 @@ getData <- function(some_url,refresh_cache) {
   }
 
   if (refresh_cache) {
-    cat("...Refreshing cache")
+    cat("...Refreshing cache\n")
   } else {
     cat("...checking for cached result\n")
   }
@@ -49,12 +50,12 @@ getData <- function(some_url,refresh_cache) {
 
 
     cat("...Fetching url .....\n")
-    url_page_response = httr::GET(some_url, add_headers(customheader="CS"))
+    response = GET(some_url, add_headers(customheader="CS"))
     cat("...adding key value pair for url and response\n")
-    assign(some_url, url_page_response, envir=CSJFD.EE)
+    assign(some_url, response, envir=CSJFD.EE)
   }
 
-  return (url_page_response)
+  return (response)
 
 }
 
