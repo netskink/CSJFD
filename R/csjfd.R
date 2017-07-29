@@ -12,10 +12,11 @@ hello <- function() {
 getData <- function(some_url) {
   cat("getData called with parameter ", some_url, "\n")
   url_page_response = GET(some_url)
-  cat(url_page_response)
+  return (url_page_response)
 
 }
 
 myTest <- function() {
   getData("http://echo.jsontest.com/fieldkey/fieldvalue/purpose/test")
 }
+
