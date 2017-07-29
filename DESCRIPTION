@@ -13,4 +13,4 @@ License: GPLv2
 Encoding: UTF-8
 LazyData: true
 Imports:
-  httr
+  httr, hashmap

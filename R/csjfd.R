@@ -5,6 +5,9 @@
 # remove.packages("httr")
 library(httr)
 
+# use the hashmap library
+library(hashmap)
+
 hello <- function() {
   print("Hello, world!")
 }
@@ -17,7 +20,13 @@ getData <- function(some_url) {
 
 }
 
-myTest <- function() {
+myTest1 <- function() {
   getData("http://echo.jsontest.com/fieldkey/fieldvalue/purpose/test")
 }
 
+myTest2 <- function() {
+
+  set.seed(123)
+  (HH <- hashmap(LETTERS, rnorm(26)))
+  print(HH[[c("A", "B")]])
+}
