@@ -1,11 +1,16 @@
 Package: CSJFD
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Demo for CS interview
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Author: John F. Davis
+Maintainer: John F. Davis, <davisjf@gmail.com>
+Description: Demo for CS interview
+    Demonstrates 
+        building a package
+        pulling a url
+        adding a custom header
+License: GPLv2
 Encoding: UTF-8
 LazyData: true
+Imports:
+  httr
