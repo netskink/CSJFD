@@ -10,7 +10,8 @@ hello <- function() {
 }
 
 getData <- function(some_url) {
-  cat("getData called with parameter ", some_url, "\n")
+  cat("getData called with url ", some_url, "\n")
+  cat("Fetching url .....\n")
   url_page_response = GET(some_url)
   return (url_page_response)
 
