@@ -9,15 +9,23 @@ library(httr)
 library(hashmap)
 
 
-#assignInNamespace("myHashMap", HH, "CSJFD")
 
 # This is called once when the package is loaded.
 # Use it to create the initial hash map
 .onLoad <- function(libname, pkgname) {
   # print("onLoad called\n")
   set.seed(123)
-  HH <- hashmap(LETTERS, rnorm(26))
+
+  # This HH using hashmaps package while cool does not work for lists
+  # So keep the code for future reference, but toss it.
+  # Reference was here https://cran.r-project.org/web/packages/hashmap/README.html
+  #
+  HH <- hashmap(c("A", "B"), rnorm(2))  # just add two dummy for unit tests
   assign("CSJFD.HH", HH, envir=.GlobalEnv)
+
+  # instead use the env capability
+  EE = new.env(hash=TRUE)
+  assign("CSJFD.EE", EE, envir=.GlobalEnv)
 
 }
 
@@ -26,8 +34,23 @@ library(hashmap)
 #
 getData <- function(some_url) {
   cat("getData() called with url ", some_url, "\n")
-  cat("Fetching url .....\n")
-  url_page_response = httr::GET(some_url)
+
+  cat("checking for cached result")
+
+  if ( exists(some_url,envir=CSJFD.EE) ) {
+
+    cat("returning cached result")
+    return( get(envir=CSJFD.EE, some_url) )
+
+  } else {
+
+
+    cat("Fetching url .....\n")
+    url_page_response = httr::GET(some_url)
+    cat("adding key value pair for url and response")
+    assign(some_url, url_page_response, envir=CSJFD.EE)
+  }
+
   return (url_page_response)
 
 }
@@ -35,12 +58,18 @@ getData <- function(some_url) {
 # see test_myTest1.R for usage
 myTest1 <- function(some_url) {
 
+  # This tests the getData routine. It was created just
+  # to test the testthat package
   return(getData(some_url))
 
 }
 
 myTest2 <- function() {
 
+  # originally this was meant to test the hashmap function,
+  # but that package can not store lists :-(
+
+  # can use typeof(somevar)
   return(CSJFD.HH[[c("A", "B")]])
 
 }
