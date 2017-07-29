@@ -6,29 +6,41 @@
 library(httr)
 
 # use the hashmap library
-#library(hashmap)
+library(hashmap)
 
-# from check of package build
-#importFrom("stats", "rnorm")
+
+#assignInNamespace("myHashMap", HH, "CSJFD")
+
+# This is called once when the package is loaded.
+# Use it to create the initial hash map
+.onLoad <- function(libname, pkgname) {
+  # print("onLoad called\n")
+  set.seed(123)
+  HH <- hashmap(LETTERS, rnorm(26))
+  assign("CSJFD.HH", HH, envir=.GlobalEnv)
+
+}
 
 
 # To remove warnings during check build, the docs were added to man getData.Rd
 #
 getData <- function(some_url) {
-  cat("getData called with url ", some_url, "\n")
+  cat("getData() called with url ", some_url, "\n")
   cat("Fetching url .....\n")
   url_page_response = httr::GET(some_url)
   return (url_page_response)
 
 }
 
-myTest1 <- function() {
-  getData("http://echo.jsontest.com/fieldkey/fieldvalue/purpose/test")
+# see test_myTest1.R for usage
+myTest1 <- function(some_url) {
+
+  return(getData(some_url))
+
 }
 
 myTest2 <- function() {
 
-  set.seed(123)
-#  (HH <- hashmap(LETTERS, rnorm(26)))
-#  print(HH[[c("A", "B")]])
+  return(CSJFD.HH[[c("A", "B")]])
+
 }

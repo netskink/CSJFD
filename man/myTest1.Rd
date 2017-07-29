@@ -10,7 +10,10 @@ A test routine.
 A test routine.  Not really needed. Just hook to test things outside of required routine
 }
 \usage{
-myTest1()
+myTest1(some_url)
+}
+\arguments{
+  \item{some_url}{a url to pass to getData routine}
 }
 %- maybe also 'usage' for other objects documented here.
 \details{
@@ -44,9 +47,8 @@ myTest1()
 ##--	or do  help(data=index)  for the standard data sets.
 
 ## The function is currently defined as
-function ()
-{
-    getData("http://echo.jsontest.com/fieldkey/fieldvalue/purpose/test")
+function (some_url) {
+      return(getData(some_url))
   }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

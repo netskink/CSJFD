@@ -1,0 +1,16 @@
+# it works without this line. Add it to be consistent?
+library(CSJFD)
+
+context("myTest2() and .onLoad() tests")
+
+test_that("myTest2 something", {
+  response = myTest2()
+#  expect_equal(response[1],-0.5604756)
+  expect_equal(round(response[1],digits=2),-0.56)
+  expect_equal(response[2],-0.2301775)
+})
+
+#test_that("myTest2 something", {
+#  response = myTest1("http://echo.jsontest.com/fieldkey/fieldvalue/purpose/test")
+#  expect_equal(response$status_code,200)
+#})

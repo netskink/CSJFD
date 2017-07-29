@@ -16,3 +16,5 @@ URL: https://github.com/netskink/CSJFD
 BugReports: https://github.com/netskink/CSJFD/issues
 Imports:
   httr, hashmap, Rcpp
+Suggests: 
+  testthat, roxygen2
