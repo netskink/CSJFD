@@ -5,8 +5,6 @@
 # remove.packages("httr")
 library(httr)
 
-# use the hashmap library
-library(hashmap)
 
 
 
@@ -16,12 +14,6 @@ library(hashmap)
   # print("onLoad called\n")
   set.seed(123)
 
-  # This HH using hashmaps package while cool does not work for lists
-  # So keep the code for future reference, but toss it.
-  # Reference was here https://cran.r-project.org/web/packages/hashmap/README.html
-  #
-  HH <- hashmap(c("A", "B"), rnorm(2))  # just add two dummy for unit tests
-  assign("CSJFD.HH", HH, envir=.GlobalEnv)
 
   # instead use the env capability
   EE = new.env(hash=TRUE)
@@ -62,21 +54,3 @@ getData <- function(some_url,refresh_cache) {
 
 }
 
-# see test_myTest1.R for usage
-myTest1 <- function(some_url) {
-
-  # This tests the getData routine. It was created just
-  # to test the testthat package
-  return(getData(some_url))
-
-}
-
-myTest2 <- function() {
-
-  # originally this was meant to test the hashmap function,
-  # but that package can not store lists :-(
-
-  # can use typeof(somevar)
-  return(CSJFD.HH[[c("A", "B")]])
-
-}
