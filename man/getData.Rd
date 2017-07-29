@@ -8,13 +8,18 @@ getData wrapper for httr::GET(some_url)
 Wrapper around httr::GET(some_url)
 }
 \usage{
-getData(some_url)
+getData(some_url,refresh_cache)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{some_url}{
-%%     ~~Describe \code{some_url} here~~
-}
+  %%     ~~Describe \code{some_url} here~~
+  A url to fetch
+  }
+  \item{refresh_cache}{
+  %%     ~~Describe \code{some_url} here~~
+  if true it will always fetch the url.  If false it will use cached results if they exist
+  }
 }
 \details{
 %%  ~~ If necessary, more details than the description above ~~

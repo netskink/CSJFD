@@ -32,22 +32,29 @@ library(hashmap)
 
 # To remove warnings during check build, the docs were added to man getData.Rd
 #
-getData <- function(some_url) {
-  cat("getData() called with url ", some_url, "\n")
+# refresh_cache was not specified, but its helpful to rewrite cache
+# when testing.  If not specified, the cache is not refreshed.
+# If specified as TRUE, it will refresh the cache
+getData <- function(some_url,refresh_cache) {
+  cat("...getData() called with url ", some_url, "\n")
 
-  cat("checking for cached result")
+  if (missing(refresh_cache)) {
+    refresh_cache=FALSE
+  }
 
-  if ( exists(some_url,envir=CSJFD.EE) ) {
+  cat("...checking for cached result\n")
 
-    cat("returning cached result")
+  if ( FALSE == refresh_cache && exists(some_url,envir=CSJFD.EE) ) {
+
+    cat("...returning cached result\n")
     return( get(envir=CSJFD.EE, some_url) )
 
   } else {
 
 
-    cat("Fetching url .....\n")
-    url_page_response = httr::GET(some_url)
-    cat("adding key value pair for url and response")
+    cat("...Fetching url .....\n")
+    url_page_response = httr::GET(some_url, add_headers(customheader="CS"))
+    cat("...adding key value pair for url and response\n")
     assign(some_url, url_page_response, envir=CSJFD.EE)
   }
 

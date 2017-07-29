@@ -1,7 +1,7 @@
 # it works without this line. Add it to be consistent?
 library(CSJFD)
 
-context("myTest2() and .onLoad() tests")
+context("myTest2() .onLoad() and getData() tests")
 
 test_that("myTest2 something", {
   response = myTest2()
@@ -20,4 +20,28 @@ test_that("getData test cache function", {
   # The second time it should return the cached result
   response = getData("http://echo.jsontest.com/fieldkey/fieldvalue/purpose/test")
   expect_equal(response$status_code,200)
+})
+
+
+test_that("getData cache refresh capability function", {
+  # The first time it should get the data and say its fetching the url
+  response = getData("http://echo.jsontest.com/fieldkey/fieldvalue/purpose/test", TRUE)
+  expect_equal(response$status_code,200)
+
+  # The second time it should return the cached result
+  response = getData("http://echo.jsontest.com/fieldkey/fieldvalue/purpose/test")
+  expect_equal(response$status_code,200)
+
+  # The third time it should return the cached result
+  response = getData("http://echo.jsontest.com/fieldkey/fieldvalue/purpose/test", FALSE)
+  expect_equal(response$status_code,200)
+})
+
+
+test_that("getData customheader function", {
+  # The first time it should get the data and say its fetching the url
+  response = getData("http://echo.jsontest.com/fieldkey/fieldvalue/purpose/test")
+  print(content(response)$headers['Customheader'])
+  expect_match(content(response)$headers['Customheader'],"CS")
+
 })
