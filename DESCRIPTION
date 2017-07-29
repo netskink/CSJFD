@@ -1,13 +1,14 @@
 Package: CSJFD
 Type: Package
 Title: Demo for CS interview
-Version: 0.1.0
+Version: 1.0.0
 Author: John F. Davis
 Maintainer: John F. Davis, <davisjf@gmail.com>
 Description: Demo for CS interview
     Demonstrates: 
         building a package,
         pulling a url,
+        caching a result,
         adding a custom header.
 License: GPL (>= 2)
 Encoding: UTF-8
@@ -15,6 +16,6 @@ LazyData: true
 URL: https://github.com/netskink/CSJFD
 BugReports: https://github.com/netskink/CSJFD/issues
 Imports:
-  httr, hashmap, Rcpp
+  httr
 Suggests: 
   testthat, roxygen2
