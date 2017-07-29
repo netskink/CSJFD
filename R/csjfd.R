@@ -34,7 +34,11 @@ getData <- function(some_url,refresh_cache) {
     refresh_cache=FALSE
   }
 
-  cat("...checking for cached result\n")
+  if (refresh_cache) {
+    cat("...Refreshing cache")
+  } else {
+    cat("...checking for cached result\n")
+  }
 
   if ( FALSE == refresh_cache && exists(some_url,envir=CSJFD.EE) ) {
 
